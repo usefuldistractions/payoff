@@ -19,6 +19,16 @@ module.exports = function(grunt) { // grunt task configuration
 			all: `dist/*`
 		},
 
+		jsdoc: {
+			options: {
+				private: true
+			},
+			all: {
+				src: "src",
+				dest: "dist/docs"
+			}
+		},
+
 		jasmine: {
 			all: {
 				src: "dist/js/*.js",
@@ -52,6 +62,7 @@ module.exports = function(grunt) { // grunt task configuration
 		`clean`,
 		`babel`,
 		`uglify`,
-		`jasmine`
+		`jasmine`,
+		"jsdoc"
 	]);
 };
