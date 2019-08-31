@@ -1,4 +1,4 @@
-# Payoff v0.0.0
+# Payoff v0.0.1
 Fixed-rate loan calculations made easy.
 
 ## Disclaimer
