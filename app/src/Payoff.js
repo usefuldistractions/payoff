@@ -113,10 +113,15 @@ class Payoff {
          **/
         this.principalPaid = totalPrincipalPaid;
         /**
-         * The start date of the loan.
-         * @type {string}
+         * The start year of the loan.
+         * @type {number}
          **/
-        this.startDate = setup.startDate;
+        this.startYear = startYear;
+        /**
+         * The start month of the loan.
+         * @type {number}
+         **/
+        this.startMonth = startMonth;
         /**
          * The amortization table of each payment.
          * @type {array}
