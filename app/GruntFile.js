@@ -10,7 +10,7 @@ module.exports = function(grunt) { // grunt task configuration
 			},
 			dist: {
 				files: {
-					'dist/js/Payoff.min.js': 'src/*'
+					"dist/js/Payoff.min.js": 'src/*'
 				}
 			}
 		},
@@ -19,50 +19,48 @@ module.exports = function(grunt) { // grunt task configuration
 			all: `dist/*`
 		},
 
+		eslint: {
+			options: {
+				configFile: '.eslintrc'
+			},
+		
+			target: ['src/Payoff.js']
+		},
+
 		jsdoc: {
 			options: {
 				private: true
 			},
 			all: {
-				src: "src",
-				dest: "dist/docs"
+				src: `src`,
+				dest: `dist/docs`
 			}
 		},
 
 		jasmine: {
 			all: {
-				src: "dist/js/*.js",
+				src: `dist/js/*.js`,
 				options: {
-					specs: "spec/*.js"
+					specs: `spec/*.js`
 				}
 			}
-		},
-
-		jshint: {
-			options: {
-				esversion: 6
-			},
-			all: [
-				`src/*.js`,
-				`spec/*.js`
-			]
 		},
 	
 		uglify: {
 			compile: {
 				files: {
-					"/app/dist/js/Payoff.min.js": "/app/dist/js/Payoff.min.js"
+					"/app/dist/js/Payoff.min.js": `/app/dist/js/Payoff.min.js`
 				}
 			}
 		} 
 	});
 
 	grunt.registerTask(`default`, [
-		`jshint`,
+		`eslint`,
 		`clean`,
 		`babel`,
 		`uglify`,
 		`jasmine`,
-		"jsdoc"
+		`jsdoc`
 	]);
 };
