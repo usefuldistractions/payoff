@@ -1,6 +1,6 @@
 {
 	"name": "payoff",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A utility library for easily adding variables to a fixed-rate mortgage loan.",
 	"author": "JP Cutter <jp@usefuldistractions.com> (https://usefuldistractions.com)",
 	"license": "MIT",
