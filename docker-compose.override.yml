@@ -3,4 +3,4 @@ services:
   compiler:
     container_name: payoff
     volumes:
-      - ./app/dist:/app/dist
+      - ./dist:/app/dist

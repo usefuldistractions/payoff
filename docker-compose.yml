@@ -2,3 +2,6 @@ version: '3.5'
 services:
   compiler:
     build: ./
+    container_name: payoff
+    volumes:
+      - ./dist:/app/dist

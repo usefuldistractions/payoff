@@ -1,4 +1,4 @@
-# Payoff
+# Payoff v0.0.2
 Fixed-rate loan calculations made easy.
 
 ## Disclaimer
@@ -15,11 +15,10 @@ The easiest way to compile this library's source code into the minified result i
 # in root /payoff/ directory
 docker-compose up
 ```
-...will run a full build on the _/app/src_ source files, placing the result into _/app/dist_, and running the unit tests.
+...will run a full build on the _/src_ source files, placing the result into _/dist_, and running the unit tests.
 
 ## TODO
 - Implement the ability to add extra payments
 - Asynchronous constructor option
-- Start generating documentation
 - Figure out how to list via npm
 - Create contribution guidelines
