@@ -1,4 +1,4 @@
-# Payoff v0.0.2
+# Payoff v0.0.3
 Fixed-rate loan calculations made easy.
 
 ## Disclaimer
@@ -20,5 +20,5 @@ docker-compose up
 ## TODO
 - Implement the ability to add extra payments
 - Asynchronous constructor option
-- Figure out how to list via npm
+- ~~Figure out how to list via npm~~
 - Create contribution guidelines
