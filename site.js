@@ -3,31 +3,110 @@ $(function() {
     const MONTH_OPTIONS_MARKUP = getMonths();
     const YEAR_OPTIONS_MARKUP = getYears();
     const DURATION_OPTIONS_MARKUP = getDurations();
+    const termsForm = $('#terms-form');
+    const termsInputs = {
+        rate: $('[name="rate"]', termsForm),
+        amount: $('[name="amount"]', termsForm),
+        month: $('[name="month"]', termsForm),
+        year: $('[name="year"]', termsForm),
+        duration: $('[name="duration"]', termsForm),
+    };
+    const singleForm = $('#single-form');
+    const singleInputs = {
+        amount: $('[name="amount"]', singleForm),
+        month: $('[name="month"]', singleForm),
+        year: $('[name="year"]', singleForm),
+    };
+    const monthlyForm = $('#monthly-form');
+    const monthlyInputs = {
+        amount: $('[name="amount"]', monthlyForm),
+        startMonth: $('[name="start-month"]', monthlyForm),
+        startYear: $('[name="start-year"]', monthlyForm),
+        endMonth: $('[name="end-month"]', monthlyForm),
+        endYear: $('[name="end-year"]', monthlyForm),
+    };
 
-    $('#input-rate')[0].value = '0.04';
-    $('#input-amount')[0].value = '300000';
-    $('#input-month').html(MONTH_OPTIONS_MARKUP);
-    $('#input-year').html(YEAR_OPTIONS_MARKUP);
-    $('#input-duration').html(DURATION_OPTIONS_MARKUP);
+    let payoff;
+    
+    termsInputs.rate.val('0.04');
+    termsInputs.amount.val('300000');
+    termsInputs.month.html(MONTH_OPTIONS_MARKUP);
+    termsInputs.year.html(YEAR_OPTIONS_MARKUP);
+    termsInputs.duration.html(DURATION_OPTIONS_MARKUP);
 
-    $('form').on('submit change keyup', onSubmit);
-    onSubmit();
+    singleInputs.month.html(MONTH_OPTIONS_MARKUP);
+    singleInputs.year.html(YEAR_OPTIONS_MARKUP);
 
-    function onSubmit(evt) {
+    monthlyInputs.startMonth.html(MONTH_OPTIONS_MARKUP);
+    monthlyInputs.startYear.html(YEAR_OPTIONS_MARKUP);
+    monthlyInputs.endMonth.html(MONTH_OPTIONS_MARKUP);
+    monthlyInputs.endYear.html(YEAR_OPTIONS_MARKUP);
+
+    $('#terms-form').on('submit change keyup', onTermsSubmit);
+    $('#single-form').on('submit', onSingleSubmit);
+    $('#monthly-form').on('submit', onMonthlySubmit);
+    onTermsSubmit();
+
+    function onTermsSubmit(evt) {
+        const terms = {
+            duration: parseInt(termsInputs.duration.val(), 10),
+            amount: parseFloat(termsInputs.amount.val()),
+            rate: parseFloat(termsInputs.rate.val()),
+            startYear: parseInt(termsInputs.year.val(), 10),
+            startMonth: parseInt(termsInputs.month.val(), 10)
+        };
+
         if(evt !== undefined) {
             evt.preventDefault();
         }
 
-        var payoff;
+        if(typeof payoff === `undefined`) {
+            payoff = new Payoff(terms);
+        } else {
+            payoff.update(terms);
+        }
 
-        payoff = new Payoff({
-            duration: parseInt(document.getElementById('input-duration').value, 10),
-            amount: parseFloat(document.getElementById('input-amount').value),
-            rate: parseFloat(document.getElementById('input-rate').value),
-            startYear: parseInt(document.getElementById('input-year').value, 10),
-            startMonth: parseInt(document.getElementById('input-month').value, 10)
+        render();
+    }
+
+    function onMonthlySubmit(evt) {
+        evt.preventDefault();
+
+        const amount = monthlyInputs.amount.val();
+        const startMonth = monthlyInputs.startMonth.val();
+        const startYear = monthlyInputs.startYear.val();
+        const endMonth = monthlyInputs.endMonth.val();
+        const endYear = monthlyInputs.endYear.val();
+
+        payoff.addPayment({
+            recurring: true,
+            amount: parseFloat(amount),
+            month: parseInt(startMonth, 10),
+            year: parseInt(startYear, 10),
+            endMonth: parseInt(endMonth, 10),
+            endYear: parseInt(endYear, 10),
         });
 
+        render();
+    }
+
+    function onSingleSubmit(evt) {
+        evt.preventDefault();
+
+        const amount = singleInputs.amount.val();
+        const month = singleInputs.month.val();
+        const year = singleInputs.year.val();
+
+        payoff.addPayment({
+            amount: parseFloat(amount),
+            month: parseInt(month, 10),
+            year: parseInt(year, 10),
+        });
+
+        render();
+    }
+
+    function render() {
         const monthlyPayment = payoff.monthlyPayment;
 
         let paid = 0;
@@ -43,7 +122,7 @@ $(function() {
         let interestPaid = ['Interest paid'];
 
         payoff.table.forEach((payment, i) => {
-            paid += monthlyPayment;
+            paid += payment.paid;
             interest += payment.interestPaid;
             principalPaid += payment.principalPaid;
 

@@ -11,33 +11,66 @@
 		<h3>
 			<a href="dist/index.html">Documentation</a>
 		</h3>
-		<form id="form">
+		<form id="terms-form">
+			<h3>Loan Terms</h3>
 			<table>
-					<tr>
-						<th>Principal Amount</th>
-						<td>$ <input id="input-amount" name="amount" type="text" /></td>
-					</tr>
-					<tr>
-						<th>Fixed APR</th>
-						<td><input id="input-rate" name="rate" type="text"/></td>
-					</tr>
-					<tr>
-						<th>First payment date</th>
-						<td>
-							<select id="input-year" name="year" alt="First year"></select>
-							<select id="input-month" name="month" alt="First month"></select>
-						</td>
-					</tr>
-					<tr>
-						<th>Duration</th>
-						<td>
-							<select id="input-duration" name="duration" alt="Years"></select>
-						</td>
-					</tr>
+				<tr>
+					<th>Principal Amount</th>
+					<td>$ <input name="amount" type="text" /></td>
+				</tr>
+				<tr>
+					<th>Fixed APR</th>
+					<td><input name="rate" type="text"/></td>
+				</tr>
+				<tr>
+					<th>First payment date</th>
+					<td>
+						<select name="month" alt="First month"></select>
+						<select name="year" alt="First year"></select>
+					</td>
+				</tr>
+				<tr>
+					<th>Duration</th>
+					<td>
+						<select name="duration" alt="Years"></select>
+					</td>
+				</tr>
 			</table>
 
 			<input type="submit" value="Calculate" />
 		</form>
+
+		<h3>Extra Payments</h3>
+		<table id="table">
+			<tr>
+				<th>Single</th>
+				<td>
+					<form id="single-form">
+						$ <input name="amount" type="text" alt="Extra payment amount" />
+						in
+						<select name="month" alt="Extra payment month"></select>
+						<select name="year" alt="Extra payment year"></select>
+						<input type="submit" value="Add" />
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<th>Monthly</th>
+				<td>
+					<form id="monthly-form">
+						$ <input name="amount" type="text" alt="Extra payment amount" />
+						starting
+						<select name="start-month" alt="Extra payment start month"></select>
+						<select name="start-year" alt="Extra payment start year"></select>
+						ending
+						<select name="end-month" alt="Extra payment end month"></select>
+						<select name="end-year" alt="Extra payment end year"></select>
+						<input type="submit" value="Add" />
+					</form>
+				</td>
+			</tr>
+		</table>
+
 		<div id="chart"></div>
 		<table id="table">
 			<tr>
@@ -62,7 +95,7 @@
 		<script type="text/javascript" src="dist/Payoff.min.js"></script>
 
 		<!-- Unminified source -->		
-		<!-- <script type="text/javascript" src="app/src/Payoff.js"></script> -->
+		<!-- <script type="text/javascript" src="src/Payoff.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.10.1/d3.min.js" integrity="sha256-szaCtUGaYjPsK3r2ARb9oJ+kqB2cDrjMS+GCRf1rnjg=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.6/c3.min.js" integrity="sha256-NGUTm0zSxMBrIL0YKJU84SQFzpUagCNdRsfjSTtlOeM=" crossorigin="anonymous"></script>
