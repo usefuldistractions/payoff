@@ -2,7 +2,7 @@
 	"name": "payoff",
 	"title": "Payoff",
 	"description": "A utility library for easily adding variables to a fixed-rate mortgage loan.",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"main": "dist/Payoff.min.js",
 	"author": "JP Cutter <jp@usefuldistractions.com> (https://usefuldistractions.com)",
 	"homepage": "https://usefuldistractions.com/github/payoff",

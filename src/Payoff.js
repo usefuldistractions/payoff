@@ -231,18 +231,18 @@
             /**
              * Remove a supplemental payment from the loan.
              * @method Payoff#removePayment
-             * @param {object} payment - A hash of payment parameters
-             * @param {number} payment.id - The id of the payment to remove
+             * @param {object} options - A hash of option parameters
+             * @param {number} options.id - The id of the payment to remove
              */
             removePayment: {
-                value: (payment) => {
-                    if(typeof payment.id !== `number`) {
+                value: (options) => {
+                    if(typeof options.id !== `number`) {
                         throw new Error(`Payoff.removePayment(): No id specified`);
                     }
                     
                     for(let i = 0; i < payments.length; i++) {
                         const payment = payments[i];
-                        if(payment.id === payment.id) {
+                        if(options.id === payment.id) {
                             payments.splice(i, 1);
                             break;
                         }
