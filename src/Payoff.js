@@ -217,7 +217,7 @@
                         throw new Error(`Payoff.addPayment(): No year specified`);
                     }
 
-                    payment.index = index++;
+                    payment.id = index++;
 
                     if(payment.recurring !== true) {
                         payment.recurring = false;
@@ -248,6 +248,18 @@
                         }
                     }
                     return reconcile();
+                }
+            },
+
+            /**
+             * The list of supplemental payments that have been added to the loan.
+             * @readonly
+             * @member {array} Payoff.payments
+             */
+            payments: {
+                get: () => {
+                    const stringified = JSON.stringify(payments);
+                    return JSON.parse(stringified); // clone the array
                 }
             }
         });

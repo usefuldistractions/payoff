@@ -1,4 +1,4 @@
-# Payoff v0.1.0
+# Payoff v0.2.0
 Fixed-rate loan calculations made easy.
 
 ## Disclaimer
@@ -18,6 +18,6 @@ docker-compose up
 ...will run a full build on the _/src_ source files, placing the result into _/dist_, and running the unit tests.
 
 ## TODO
-- ~~Implement the ability to add extra payments~~
 - Asynchronous constructor option
 - Create contribution guidelines
+- More unit test coverage
