@@ -1,7 +1,10 @@
-(function(environment = window) {
-    if(environment.define !== undefined) {
-        environment.define('Payoff', Payoff);
+(function() {
+    var environment;
+
+    if(typeof define === 'function') {
+        define('Payoff', Payoff);
     } else {
+        environment = (typeof global === 'object') ? global : window;
         environment.Payoff = Payoff;
     }
 
