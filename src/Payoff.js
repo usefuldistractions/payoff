@@ -1,10 +1,7 @@
-(function() {
-    var environment;
-
+(function(environment) {
     if(typeof define === 'function') {
         define('Payoff', Payoff);
     } else {
-        environment = (typeof global === 'object') ? global : window;
         environment.Payoff = Payoff;
     }
 
